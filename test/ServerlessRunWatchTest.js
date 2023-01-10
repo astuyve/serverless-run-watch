@@ -97,6 +97,11 @@ describe('ServerlessRunWatch', () => {
       const runWatch = new ServerlessRunWatch(slsStub, { function: 'hello', config: 'myfile.yml' })
       expect(runWatch.serverlessFileChanged('myfile.yml')).to.be.true
     })
+
+    it('doesn\'t trigger for swapfiles ', () => {
+      const runWatch = new ServerlessRunWatch(slsStub, { function: 'hello' })
+      expect(runWatch.serverlessFileChanged('serverless.yml.swp')).to.be.false
+    })
   })
 
   describe('runServerless', () => {
@@ -114,6 +119,14 @@ describe('ServerlessRunWatch', () => {
       runWatch.spawnServerless()
 
       sinon.assert.calledWith(execFileStub,'serverless', ['deploy', 'function', '--function', 'hello', '--config', 'foo.yml'], {stdio: 'inherit'})
+    })
+
+    it('passes stage and region', async () => {
+      const runWatch = new ServerlessRunWatch(slsStub, { function: 'hello', stage: 'foobar', region: 'us-west-2' })
+      await runWatch.init()
+      runWatch.spawnServerless()
+
+      sinon.assert.calledWith(execFileStub,'serverless', ['deploy', 'function', '--function', 'hello', '--stage', 'foobar', '--region', 'us-west-2'], {stdio: 'inherit'})
     })
   })
 
