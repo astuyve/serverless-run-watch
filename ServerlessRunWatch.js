@@ -21,7 +21,8 @@ class ServerlessRunWatch {
     this.serviceDir = serverless.config.serviceDir;
     this.watchPaths = [];
 
-    this.slsRegex = /serverless.(yml|yaml|json|ts)/;
+    this.slsRegex = /serverless.(yml|yaml|json|ts)$/;
+    this.spawnSlsOptions = []
 
     this.hooks = {
       "run-watch:start": this.start.bind(this),
@@ -67,6 +68,12 @@ class ServerlessRunWatch {
         }
       }
     }
+    this.spawnSlsOptions = Object.entries(this.cliOptions).reduce((accum, [k, v]) => {
+      if (['config', 'stage', 'region', 'verbose', 'force'].includes(k)) {
+        accum.push(`--${k}`, v)
+      }
+      return accum
+    }, [])
     if (this.cliOptions["watch-glob"]) {
       this.watchPaths.push(...this.cliOptions["watch-glob"].split(","));
     } else {
@@ -89,10 +96,8 @@ class ServerlessRunWatch {
       "function",
       "--function",
       this.cliOptions.function,
+      ...this.spawnSlsOptions
     ];
-    if (this.cliOptions.config) {
-      cmdArray.push("--config", this.cliOptions.config);
-    }
     return childProcess.execFileSync("serverless", cmdArray, { stdio: "inherit" });
   }
 
