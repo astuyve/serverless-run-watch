@@ -5,7 +5,9 @@ This [Serverless](https://github.com/serverless/serverless) plugin provides a fa
 Logs delivered from CloudWatch to your terminal.
 Deployments skip CloudFormation, and use direct `updateFunction` and `updateFunctionConfiguration` API calls which take only a few seconds.
 
-Supports all runtimes.
+Supports all runtimes
+
+https://user-images.githubusercontent.com/1598537/211593551-07cd4f67-ad3d-43ab-9962-5790b2aeba3f.mov
 
 ## Documentation
 - [Installation](#installation)
@@ -26,6 +28,12 @@ Skip streaming logs, only redeploy your function when a change is detected
 
 #### config
 This is shared with `serverless`, and honors a config file named something other than `serverless.yml`.
+
+#### stage
+This is shared with `serverless`
+
+#### region
+This is shared with `serverless`
 
 #### watch-glob
 Customize the path or paths (comma-separated) to watch. Supports glob/regex, or a direct file. Useful if you have a large project but only want to redeploy if one (or a few) files change. Also useful if my regex is missing a file you use.
