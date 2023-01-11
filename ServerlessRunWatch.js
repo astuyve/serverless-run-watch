@@ -77,7 +77,7 @@ class ServerlessRunWatch {
     if (this.cliOptions["watch-glob"]) {
       this.watchPaths.push(...this.cliOptions["watch-glob"].split(","));
     } else {
-      this.watchPaths.push(`${this.serviceDir}/**/*.(js|py|ts|go|java|rb)`);
+      this.watchPaths.push(`${this.serviceDir}/**/*.(js|mjs||py|ts|go|java|rb)`);
     }
     if (this.cliOptions.config) {
       this.watchPaths.push(this.cliOptions.config);
