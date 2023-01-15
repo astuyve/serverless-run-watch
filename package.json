@@ -1,7 +1,7 @@
 {
   "name": "serverless-run-watch",
-  "version": "0.3.0",
-  "description": "",
+  "version": "0.4.0",
+  "description": "Cloud-local developer experience for Serverless. Single-digit second deploys, and logs streamed from CloudWatch straight to your terminal",
   "main": "ServerlessRunWatch.js",
   "scripts": {
     "test": "nyc mocha"
