@@ -45,7 +45,7 @@ describe('ServerlessRunWatch', () => {
       const runWatch = new ServerlessRunWatch(slsStub, { function: 'hello' })
       await runWatch.init()
       expect(runWatch.watchPaths).to.deep.equal([
-        "./test/**/*.(js|py|ts|go|java|rb)",
+        "./test/**/*.(js|mjs|py|ts|go|java|rb)",
         "./test/serverless.(yml|yaml|json|ts)"
       ])
     })
@@ -54,7 +54,7 @@ describe('ServerlessRunWatch', () => {
       const runWatch = new ServerlessRunWatch(slsStub, { function: 'hello', config: './test/custom.yml' })
       await runWatch.init()
       expect(runWatch.watchPaths).to.deep.equal([
-        "./test/**/*.(js|py|ts|go|java|rb)",
+        "./test/**/*.(js|mjs|py|ts|go|java|rb)",
         "./test/custom.yml"
       ])
     })
