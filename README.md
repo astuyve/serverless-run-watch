@@ -2,12 +2,14 @@
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
 This [Serverless](https://github.com/serverless/serverless) plugin provides a fast iterate -> test loop in your CLI.
+
 Logs delivered from CloudWatch to your terminal.
+
 Deployments skip CloudFormation, and use direct `updateFunction` and `updateFunctionConfiguration` API calls which take only a few seconds.
 
 Supports all runtimes
 
-https://user-images.githubusercontent.com/1598537/211593551-07cd4f67-ad3d-43ab-9962-5790b2aeba3f.mov
+![sls-run-watch-reduced](https://user-images.githubusercontent.com/1598537/213583355-1c08619f-da92-454d-b431-3df21d40ed09.gif)
 
 ## Documentation
 - [Installation](#installation)
@@ -16,7 +18,11 @@ https://user-images.githubusercontent.com/1598537/211593551-07cd4f67-ad3d-43ab-9
 - [Serverless Framework Support](#serverless-framework-support)
 
 ## Installation
-`serverless plugin install -n serverless-run-watch`, or `npm i -D serverless-run-watch`, and then add `serverless-run-watch` to the `plugins` section of your `serverless.yml` file.
+`serverless plugin install -n serverless-run-watch`
+
+then run
+
+`serverless run-watch --function <yourFunctionName>`
 
 ## Command Line Options
 
